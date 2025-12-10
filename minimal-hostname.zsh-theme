@@ -6,6 +6,10 @@ _fishy_collapsed_wd() {
   fi
 }
 
+precmd() {
+  print -n -- "\e[5 q"
+}
+
 local user_color='green'; [ $UID -eq 0 ] && user_color='red'
 local host_color='white'; [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] && host_color='yellow'
 PROMPT='%{$fg[$host_color]%}%m%{$reset_color%} > %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#. >) '
